@@ -15,6 +15,12 @@ class User < ApplicationRecord
   #一覧画面で使う
   has_many :followings, through: :relationships, source: :followed
   has_many :followers, through: :reverse_of_relationships,source: :follower
+  #DM
+  has_many :user_rooms
+  has_many :chats
+  has_many :rooms, through: :user_rooms
+  #閲覧
+  has_many :view_counts, dependent: :destroy
 
   validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
   validates :introduction, length: { maximum: 50 }
