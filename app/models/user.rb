@@ -21,6 +21,9 @@ class User < ApplicationRecord
   has_many :rooms, through: :user_rooms
   #閲覧
   has_many :view_counts, dependent: :destroy
+  #group
+  has_many :group_users, dependent: :destroy
+  has_many :groups, through: :group_users
 
   validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
   validates :introduction, length: { maximum: 50 }
